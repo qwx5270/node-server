@@ -1,0 +1,15 @@
+DOCTYPE
+html
+  head
+    meta(charset='utf-8')
+    title jade简单使用
+    style.
+      div {width: 100px; height: 100px; background: #eee; line-height: 70px; float: left}
+      div.last {clear: left}
+  body
+    -var a=0;
+    while a<12
+      if a%4==0 && a!=0
+        div.last #{a++}
+      else
+        div=a++

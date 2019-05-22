@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style type="text/css">
+     body {
+         float: left;
+         margin: 0px;
+     }
+    .box {
+      width: 89px;
+      height:89px;
+      background: antiquewhite;
+    }
+    #div {
+      font-family: sans-serif;
+      font-size: 10px;
+      display: none;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      var aBtn = document.getElementById("btn");
+      var oDiv = document.getElementById("div");
+
+      aBtn.onclick = function () {
+        oDiv.style.display = "block";
+      }
+    }
+  </script>
+</head>
+<body>
+  <p><h3>一步一脚印，相信自己</h3></p>
+  <div class="box">
+    <div id="div">
+      随便来点吃的!
+    </div>
+  </div>
+  <input id="btn" type="button" value="按钮"/>
+</body>
+</html>

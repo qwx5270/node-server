@@ -1,0 +1,122 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>登入 - layuiAdmin</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <script src="jquery.min.js"></script>
+  <link rel="stylesheet" href="./layui/layui.css" media="all">
+  <link rel="stylesheet" href="./layui/admin.css" media="all">
+  <link rel="stylesheet" href="./layui/login.css" media="all">
+</head>
+<body>
+
+  <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
+
+    <div class="layadmin-user-login-main">
+      <div class="layadmin-user-login-box layadmin-user-login-header">
+        <h2>layuiAdmin</h2>
+        <p>界面登陆</p>
+      </div>
+      <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+        <div class="layui-form-item">
+          <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
+          <input type="text" name="user" id="user" lay-verify="required" placeholder="用户名" class="layui-input">
+        </div>
+        <div class="layui-form-item">
+          <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+          <input type="password" name="password" id="pass" lay-verify="required" placeholder="密码" class="layui-input">
+        </div>
+        <!-- <div class="layui-form-item">
+          <div class="layui-row">
+            <div class="layui-col-xs7">
+              <label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-login-vercode"></label>
+              <input type="text" name="vercode" id="LAY-user-login-vercode" lay-verify="required" placeholder="图形验证码" class="layui-input">
+            </div>
+            <div class="layui-col-xs5">
+              <div style="margin-left: 10px;">
+                <img src="https://www.oschina.net/action/user/captcha" class="layadmin-user-login-codeimg" id="LAY-user-get-vercode">
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="layui-form-item" style="margin-bottom: 20px;">
+          <input type="checkbox" name="remember" lay-skin="primary" title="记住密码">
+          <a href="forget.html" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？</a>
+        </div>
+        <div class="layui-form-item">
+          <button id="login_btn" class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 入</button>
+        </div>
+        <div class="layui-trans layui-form-item layadmin-user-login-other">
+          <button id="reg_btn" class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">注 册</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="layui-trans layadmin-user-login-footer">
+
+      <p>© 2018 <a href="http://www.layui.com/" target="_blank">qwx</a></p>
+      <p>
+        <span><a href="http://www.layui.com/admin/#get" target="_blank">@emial</a></span>
+        <span><a href="http://www.layui.com/admin/pro/" target="_blank">@qq</a></span>
+        <span><a href="http://www.layui.com/admin/" target="_blank">@资助</a></span>
+      </p>
+    </div>
+
+  </div>
+  <script>
+    window.onload = function () {
+      var oTxtUser = document.getElementById('user');
+      var oTxtPass = document.getElementById('pass');
+      var oBtnReg = document.getElementById('reg_btn');
+      var oBtnLogin = document.getElementById('login_btn');
+
+      oBtnLogin.onclick = function () {
+        $.ajax({
+          url: '/user',
+          data: {act: 'login', user: oTxtUser.value, pass: oTxtPass.value},
+          type: 'get',
+          success: function (str) {
+		    var json = eval('('+str+')');
+			console.log("str: " +str+ "json: " +json);
+            if (json.ok) {
+              alert('登录成功')
+            } else {
+              alert('登录失败' +json.msg);
+            }
+          },
+          error: function () {
+              alert('通信失败');
+          }
+        })
+      }
+
+      oBtnReg.onclick = function () {
+        $.ajax({
+          url: '/user',
+          data: {act: 'reg', user: oTxtUser.value, pass: oTxtPass.value},
+          type: 'get',
+          success: function (str) {
+            var json = eval('('+str+')');
+            console.log("str: " +str+ "json: " +json);
+
+            if (json.ok) {
+              alert('注册成功')
+            } else {
+              alert('注册失败' +json.msg);
+            }
+          },
+          error: function () {
+            alert('通信失败');
+          }
+        });
+      };
+    };
+  </script>
+
+</body>
+</html>

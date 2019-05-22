@@ -1,0 +1,23 @@
+cookie、 session
+
+cookie: 在浏览器保存一些数据，每次请求都会带过来
+        ---  不安全、 有限(4k)
+		
+session: 保存数据， 保存在服务端
+       ---    安全、 无限的
+
+
+session: 基于cookie实现的
+      --- cookie中会有一个session的ID、 服务器利用sessionid 找到session 文件、读取、写入
+	  
+	  --- 隐患: session劫持    拿到你的sessionid 干任何事情
+
+	  
+	  
+cookie  
+1. 读取    -- cookie-parser
+2. 发送
+
+session
+1. 读取   -- cookie-session
+	  
